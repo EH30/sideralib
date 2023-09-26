@@ -101,9 +101,9 @@ ayanamsa options:
    
 ```   
 # Example  
-data = SiderealAstroData.AstroData(year, month, day, hour, minute, second, utc_hour, utc_minute, latitude, longitude, ayanamsa=ayanamsa)
+data = astrodata.AstroData(year, month, day, hour, minute, second, utc_hour, utc_minute, latitude, longitude, ayanamsa="ay_lahiri")
 data.get_chiron_rashi("resources\swefiles") # returns dict with chiron information
-kundli = AstroChart.Chart(data.planets_rashi()).lagnaChart() # returns list with all the houses in Lagna Chart
+kundli = astrochart.Chart(data.planets_rashi()).lagnaChart() # returns list with all the houses in Lagna Chart
 ```   
 
 
