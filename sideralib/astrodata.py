@@ -28,8 +28,15 @@ PLANETS = {
 }
 
 class Date:
-    def __init__(self, year:int, month:int, day:int, hour:int, minute:int, second:int,  
-                 utc_offset_hours:int, utc_offset_minutes:int):
+    def __init__(self, 
+                 year:int, 
+                 month:int, 
+                 day:int, 
+                 hour:int, 
+                 minute:int, 
+                 second:int,  
+                 utc_offset_hours:int, 
+                 utc_offset_minutes:int):
         self.year   = year
         self.month  = month
         self.day    = day
@@ -40,8 +47,18 @@ class Date:
         self.utc_offset_minutes = utc_offset_minutes
 
 class AstroData:
-    def __init__(self, year:int, month:int, day:int, hour:int, minute:int, second:int, 
-                 utc_offset_hours:int, utc_offset_minutes:int, latitude:float, longitude:float, ayanamsa="ay_lahiri"):
+    def __init__(self, 
+                 year:int, 
+                 month:int, 
+                 day:int,  
+                 hour:int, 
+                 minute:int, 
+                 second:int, 
+                 utc_offset_hours:int,  
+                 utc_offset_minutes:int, 
+                 latitude:float, 
+                 longitude:float, 
+                 ayanamsa="ay_lahiri"):
         """   
         arguments: 
         - year: birth year
@@ -56,7 +73,8 @@ class AstroData:
 
         Example: AstroData(2009, 3, 30, 9, 36, 0, 5, 30, 19.0760, 72.8777, ayanamsa="ay_lahiri")    
         """
-        date = Date(year, month, day, hour, minute, second, utc_offset_hours, utc_offset_minutes)
+        date = Date(year, month, day, hour, 
+                    minute, second, utc_offset_hours, utc_offset_minutes)  
         self.juld = JulianDate.JulianDate(date).date_utc_to_julian()
         self.ayanamsa = ayanamsa.lower()
         self.latitude  = latitude
@@ -76,7 +94,10 @@ class AstroData:
         flags = swe.FLG_SWIEPH + swe.FLG_SPEED + swe.FLG_SIDEREAL        
         xx, ret = swe.calc_ut(self.juld, swe.CHIRON, flags)
         rashi_number = xx[0] / 30 
-        output[planet] = {"sign_num":int(rashi_number)+1, "lon": xx[0], "retrograde": False}
+        output[planet] = {
+            "sign_num":int(rashi_number)+1, 
+            "lon": xx[0], "retrograde": False
+        }
         if xx[3] < 0:
             output["planet"]["retrograde"] = True
         return output
@@ -86,21 +107,30 @@ class AstroData:
         swe.set_sid_mode(SWE_AYANAMSA[self.ayanamsa], 0, 0)  # Set the Ayanamsa
         flags = swe.FLG_SWIEPH + swe.FLG_SPEED + swe.FLG_SIDEREAL
 
-        cusps, ascmc = swe.houses_ex(self.juld, self.latitude, self.longitude, b'B', flags)
+        cusps, ascmc = swe.houses_ex(self.juld, self.latitude,
+                                      self.longitude, b'B', flags)
         ascendant = ascmc[0]
         output = {}
-        output["ascendant"] = {"sign_num":int(ascendant/30)+1, "lon":ascendant}
+        output["ascendant"] = {
+            "sign_num":int(ascendant/30)+1, 
+            "lon":ascendant
+        }
 
         for planet in PLANETS:
             xx, ret = swe.calc_ut(self.juld, PLANETS[planet], flags)
             rashi_number = xx[0] / 30 
-            output[planet] = {"sign_num":int(rashi_number)+1, "lon": xx[0], "retrograde": False}
+            output[planet] = {
+                "sign_num":int(rashi_number)+1, 
+                "lon": xx[0], "retrograde": False
+            }  
             if xx[3] < 0:
                 output[planet]["retrograde"] = True
         
-        output["ketu"] = {"sign_num":  int(swe.degnorm(output["rahu"]["lon"]+180) / 30)+1 , "lon": swe.degnorm(output["rahu"]["lon"]+180), "retrograde": False}
+        output["ketu"] = {
+            "sign_num":  int(swe.degnorm(output["rahu"]["lon"]+180) / 30)+1 , 
+            "lon": swe.degnorm(output["rahu"]["lon"]+180), "retrograde": False
+        }
         if output["rahu"]["retrograde"] == True:
             output["ketu"]["retrograde"] = True 
         swe.close()
         return output
-    

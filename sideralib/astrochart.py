@@ -59,7 +59,7 @@ class Chart:
         houses[0].asc_signlon  = lagna["signlon"]
         houses[0].asc_minute   = lagna["minute"]
         houses[0].asc_second   = lagna["second"]
-        houses[0].asc_degree   = self.degree_minute_second_st(lagna["signlon"], lagna["minute"], lagna["second"])
+        houses[0].asc_degree   = self.degree_minute_second_st(lagna["signlon"], lagna["minute"], lagna["second"]) 
 
         for house in range(len(houses)):
             for planet in planets:
