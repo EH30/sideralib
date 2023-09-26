@@ -16,7 +16,8 @@ if __name__ == "__main__":
     longitude =  72.8777
     ayanamsa = "ay_lahiri"
     data = astrodata.AstroData(year, month, day, hour, minute, second, utc_hour, utc_minute, latitude, longitude, ayanamsa=ayanamsa)
-    kundli = astrochart.Chart(data.planets_rashi()).lagnaChart() # returns list with all the houses in Lagna Chart
+    planet_data = data.planets_rashi() # get planet data  
+    kundli = astrochart.Chart(planet_data).lagnaChart() # returns list with all the houses in Lagna Chart
     # kundli[0] = house 1      
     # kundli[1] = house 2   
     # ...   

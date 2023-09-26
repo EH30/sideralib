@@ -22,7 +22,8 @@ if __name__ == "__main__":
     longitude =  72.8777
     ayanamsa = "ay_lahiri"
     data = astrodata.AstroData(year, month, day, hour, minute, second, utc_hour, utc_minute, latitude, longitude, ayanamsa=ayanamsa)
-    kundli = astrochart.Chart(data.planets_rashi()).lagnaChart() # returns list with all the houses in Lagna Chart
+    planet_data = data.planets_rashi() # get planet data  
+    kundli = astrochart.Chart(planet_data).lagnaChart() # returns list with all the houses in Lagna Chart
     # kundli[0] = house 1      
     # kundli[1] = house 2   
     # ...   
@@ -37,7 +38,7 @@ if __name__ == "__main__":
             print("Asc minute: ", kundli[house].asc_minute)
             print("Asc sec: ", kundli[house].asc_second)
             print("Asc: ", kundli[house].asc_degree)
-        print("house: {0} sign_num: {1} planet: {2}".format(house+1, kundli[house].sign_num, kundli[house].planets))
+        print("house: {0} sign_num: {1} planet: {2}".format(house+1, kundli[house].sign_num, kundli[house].planets))   
 
 ```   
 #       
