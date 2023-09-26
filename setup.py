@@ -21,7 +21,7 @@ setup(
     # Metadata
     long_description=long_description,
     long_description_content_type="text/markdown",
-    description='Python package for Astrology',
+    description='This Python package is for astrology and uses the sidereal system.',
     url='https://github.com/EH30/sideralib',
     keywords=['Astrology', 'Sidereal Astrology', "Kundli", "Sidereal", "Tools", "Chart"],
     license='Unlicense',
