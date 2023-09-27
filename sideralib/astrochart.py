@@ -7,14 +7,15 @@ class DataHouse:
         self.asc_signlon     = None
         self.asc_minute      = None
         self.asc_second      = None
-        self.asc_degree      = None 
+        self.asc_degree      = None
+        self.asc_lon         = None 
         self.planets          = {}
 
 class Chart:
     def __init__(self, data:dict) :
         self.data = data
     
-    def degree_minute_second_st(self, deg, minute, second) -> str:
+    def degree_minute_second_st(self, deg:float, minute:float, second:float) -> str:
         new_deg = ""
         new_min = ""
         new_sec = ""
@@ -56,10 +57,11 @@ class Chart:
         
         lagna = self.degree_minute_second(planets["ascendant"]["lon"])
         houses[0].is_ascendant = True
+        houses[0].asc_degree   = self.degree_minute_second_st(lagna["signlon"], lagna["minute"], lagna["second"]) 
         houses[0].asc_signlon  = lagna["signlon"]
         houses[0].asc_minute   = lagna["minute"]
         houses[0].asc_second   = lagna["second"]
-        houses[0].asc_degree   = self.degree_minute_second_st(lagna["signlon"], lagna["minute"], lagna["second"]) 
+        houses[0].asc_lon      = planets["ascendant"]["lon"]
 
         for house in range(len(houses)):
             for planet in planets:
@@ -95,10 +97,11 @@ class Chart:
         
         lagna = self.degree_minute_second(planets["ascendant"]["lon"])
         houses[asc_house].is_ascendant = True
+        houses[asc_house].asc_degree   = self.degree_minute_second_st(lagna["signlon"], lagna["minute"], lagna["second"])
         houses[asc_house].asc_signlon  = lagna["signlon"]
         houses[asc_house].asc_minute   = lagna["minute"]
         houses[asc_house].asc_second   = lagna["second"]
-        houses[asc_house].asc_degree   = self.degree_minute_second_st(lagna["signlon"], lagna["minute"], lagna["second"])
+        houses[asc_house].asc_lon      = planets["ascendant"]["lon"]
 
         for house in range(len(houses)):
             for planet in planets:

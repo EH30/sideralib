@@ -1,5 +1,5 @@
 import swisseph as swe
-from .tools import astrojdate
+from .astrotime import astrojtime
 
 
 SWE_AYANAMSA  = {
@@ -75,7 +75,7 @@ class AstroData:
         """
         date = Date(year, month, day, hour, 
                     minute, second, utc_offset_hours, utc_offset_minutes)  
-        self.juld = astrojdate.JulianDate(date).date_utc_to_julian()
+        self.juld = astrojtime.JulianDate(date).date_utc_to_julian()
         self.ayanamsa  = ayanamsa.lower()
         self.latitude  = latitude
         self.longitude = longitude

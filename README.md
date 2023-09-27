@@ -34,16 +34,18 @@ if __name__ == "__main__":
     # kundli[0].planets returns dict with all the planet information in first house.   
     for house in range(len(kundli)):
         if kundli[house].is_ascendant == True:
+            print("Asc lon: ", kundli[house].asc_lon)
             print("Asc Signlon: ", kundli[house].asc_signlon)
             print("Asc minute: ", kundli[house].asc_minute)
             print("Asc sec: ", kundli[house].asc_second)
             print("Asc: ", kundli[house].asc_degree)
-        print("house: {0} sign_num: {1} planet: {2}".format(house+1, kundli[house].sign_num, kundli[house].planets))   
+        print("house: {0} sign_num: {1} planet: {2}".format(house+1, kundli[house].sign_num, kundli[house].planets))
 
 ```   
 #       
 ```   
 # Output: 
+# Asc lon:  37.606448680104336
 # Asc Signlon:  7.606448680104336
 # Asc minute:  36.38692080626015
 # Asc sec:  23.215248375609086
@@ -64,11 +66,11 @@ if __name__ == "__main__":
 
 
 #   
-kundli[0] = house 1      
-kundli[1] = house 2  
+kundli[0] -> house 1      
+kundli[1] -> house 2  
 ...   
 ...   
-kundli[11] = house 12
+kundli[11] -> house 12
 
 kundli[0].sign_num returns rashi sign number in first house.   
 kundli[0].planets returns dict with all the planet information in first house.
@@ -89,7 +91,8 @@ ayanamsa options:
 ```kundli[0].asc_signlon```: returns the ascendant degree    
 ```kundli[0].asc_minute```: returns the ascendant minute    
 ```kundli[0].asc_second```: returns the ascendant second   
-```kundli[0].asc_degree```: returns the ascendant degree   
+```kundli[0].asc_degree```: returns the ascendant degree in string format   
+```kundli[0].asc_lon```: returns the ascendant longitude   
 ```kundli[0].planets```:   returns dict with planet information in the first house   
 #
 ```astrochart.Chart```:    

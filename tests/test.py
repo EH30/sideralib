@@ -28,6 +28,7 @@ if __name__ == "__main__":
     # kundli[0].planets returns dict with all the planet information in first house.   
     for house in range(len(kundli)):
         if kundli[house].is_ascendant == True:
+            print("Asc lon: ", kundli[house].asc_lon)
             print("Asc Signlon: ", kundli[house].asc_signlon)
             print("Asc minute: ", kundli[house].asc_minute)
             print("Asc sec: ", kundli[house].asc_second)
