@@ -24,11 +24,11 @@ if __name__ == "__main__":
     data = astrodata.AstroData(year, month, day, hour, minute, second, utc_hour, utc_minute, latitude, longitude, ayanamsa=ayanamsa)
     planet_data = data.planets_rashi() # get planet data  
     kundli = astrochart.Chart(planet_data).lagnaChart() # returns list with all the houses in Lagna Chart
-    # kundli[0] = house 1      
-    # kundli[1] = house 2   
+    # kundli[0] -> house 1      
+    # kundli[1] -> house 2   
     # ...   
     # ...   
-    # kundli[11] = house 12
+    # kundli[11] -> house 12
 
     # kundli[0].sign_num returns rashi sign in first house.   
     # kundli[0].planets returns dict with all the planet information in first house.   
